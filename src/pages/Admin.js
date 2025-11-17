@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const API_BASE_URL = process.env.APP_API_BASE_URL;
 
 export default function Admin() {
   const [results, setResults] = useState([]);
@@ -20,7 +21,7 @@ export default function Admin() {
 
   // FETCH RESULTS
   const loadResults = async () => {
-    const res = await axios.get("http://localhost:5000/admin/results");
+    const res = await axios.get(`${API_BASE_URL}/admin/results`);
     setResults(res.data);
     setSortedResults(res.data);
   };
@@ -31,7 +32,7 @@ export default function Admin() {
 
   // CREATE TEST LINK
   const createTestLink = async () => {
-    const res = await axios.post("http://localhost:5000/admin/create-test", { email });
+    const res = await axios.post(`${API_BASE_URL}/admin/create-test`, { email });
     setGeneratedLink(res.data.link);
   };
 
@@ -43,7 +44,7 @@ export default function Admin() {
 
   // ADD QUESTION
   const addQuestion = async () => {
-    await axios.post("http://localhost:5000/admin/add-question", newQ);
+    await axios.post(`${API_BASE_URL}/admin/add-question`, newQ);
     alert("Question Added!");
   };
 

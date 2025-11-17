@@ -260,7 +260,7 @@ export default function TestPage() {
   //
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/test/${testId}`, {
+      .get(`${API_BASE_URL}/test/${testId}`, {
         headers: { "X-Device-Id": deviceId }
       })
       .then(res => {
@@ -290,7 +290,7 @@ export default function TestPage() {
 
     const interval = setInterval(() => {
       axios
-        .get(`http://localhost:5000/test/${testId}/status`, {
+        .get(`${API_BASE_URL}/test/${testId}/status`, {
           headers: { "X-Device-Id": deviceId }
         })
         .then(res => {
@@ -310,7 +310,7 @@ export default function TestPage() {
   const forceActivate = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/test/${testId}/force-activate`,
+        `${API_BASE_URL}/test/${testId}/force-activate`,
         {},
         { headers: { "X-Device-Id": deviceId } }
       );
@@ -340,7 +340,7 @@ export default function TestPage() {
 
     try {
       const res = await axios.post(
-        `http://localhost:5000/test/submit/${testId}`,
+        `${API_BASE_URL}/test/submit/${testId}`,
         { answers: formatted },
         { headers: { "X-Device-Id": deviceId } }
       );
